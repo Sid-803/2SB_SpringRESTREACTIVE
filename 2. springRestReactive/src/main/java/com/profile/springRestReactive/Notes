@@ -1,0 +1,71 @@
+Why and when to use Reactive Programming?
+    In Spring Boot MVC based web application. Every request is internally a thread.
+    This thread communicates with database until it gets data in response. (Till then it remains in blocking mode)
+    Also, this thread cant be assigned to any other request while it is in blocking mode.
+
+    Reactive programming ensures application resource utilization optimally instead of keeping threads in idle mode.
+    It makes resource utilization accurately by implementing an event loop.
+    When a thread makes database call, the call is handed over to event loop to process the SQL query and thread becomes
+    free for that duration.
+
+How to implement Reactive Spring boot programming?
+    At server side, we can use Spring web flux by using Spring Boot reactive database such as MongoDB.
+
+What is Reactive in programming world?
+    Non blocking: It means for reacting to notifications as soon as previous operations complete or data becomes available.
+    reactive refers to programming model that are built around reacting to change such as UI controllers reacting to mouse events
+    or network components reacting to I/O events. etc
+
+What is Spring Web flux?
+    The primary web framework in Spring framework, Spring Web MVC, internally uses the Servlet API and servlet containers.
+    Spring Webflux runs on server such as Netty, Undertow, and Servlet 3.1+ containers and is fully non-blocking.
+    Both framework can work in perfect combination.
+
+Why was Spring Web Flux created?
+    It handles concurrency with a minimum number of threads.
+    scale with minimum hardware resources.
+    can support non-blocking web stack.
+    Enables functional programming - Java8 enabled Spring Webflux to provide functional programming in Java.
+    Functional web endpoints with annotated controllers.
+
+Difference between Reactive Stack and Servlet Stack?
+    Servlet Stack                               Reactive Stack
+    1. webmvc                                      1. webflux
+    2. Servlet API                                 2. multicore, next generation processors
+    3. blocking I/O architecture                   3. non-blocking framework
+    4. one request/ thread model                   4. massive number of concurrent connections
+    5. uses Servlet containers                     5. uses Servelt 3.1 + Containers and Netty
+    6. Uses Spring Data Repositories               6. Reactive repositories such as Mongo, Cassandra, Redis
+       such as JDBC, JPA and NoSQL                    Couchbase, R2DBC
+    7. Programming model uses Servlet API          7. Reactive Stream Adapters
+    8. Spring security module is                   8. Spring Security
+        Spring Security Reactive
+
+How database Integration happens in Reactive way?
+    Accessing and processing data in non reactive way.
+
+What is R2DBC?
+    Reactive Relational Database Connectivity, offers integration of relational databases in a reactive application stack.
+    R2DBC acts as an incubator to integrate relational databases using reactive driver.
+    It offers an easy way to build Spring-based application that uses relational databases.
+
+Developing Reactive CRUD REST API with Spring WebFlux.
+    Here, Invoice as an entity is used to develop the API
+
+    In service Mono<> and FLux<> Interfaces are used as returns.
+    Use Mono to return a single object and Flux to return a collection
+
+Consumer Application
+    REST producer (Server Stack REST producer), we generally use RestTemplate to develop Consumer.
+    Here, Reactive instead of RestTemplate we use WebClient that supports making request to Reactive Rest producer and gives
+    final data either as Mono or Flux
+    WebClient is an interface and Defualt Web client is an implementation class.
+
+    Steps:
+    1. Object of WebClient using base url
+    2. provide path at controller using GET/POST method
+    3. provide inputs (body, headers, params)
+    4. Create request for data retrieval with Type mono/flux
+    NOTE: We need to update server for producer as both applications cannot run on same port.(Considering we are running on same system)
+
+    Different Runner classes to achieve C.R.U.D
